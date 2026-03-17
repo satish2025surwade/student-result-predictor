@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="hi">
+<head>
+  <meta charset="UTF-8"/>
+  <title>Login - Student Predictor</title>
+  <style>
+    *{margin:0;padding:0;box-sizing:border-box}
+    body{font-family:Arial,sans-serif;background:#f0f2f5;display:flex;align-items:center;justify-content:center;min-height:100vh}
+    .login-box{background:#fff;border-radius:14px;padding:36px 32px;width:360px;box-shadow:0 2px 12px rgba(0,0,0,0.1)}
+    .login-box h1{font-size:22px;text-align:center;color:#5341E5;margin-bottom:4px}
+    .login-box p{font-size:13px;text-align:center;color:#888;margin-bottom:24px}
+    .form-group{margin-bottom:14px}
+    label{display:block;font-size:13px;color:#555;font-weight:600;margin-bottom:5px}
+    input{width:100%;padding:10px 12px;border:1px solid #ddd;border-radius:8px;font-size:14px;outline:none}
+    input:focus{border-color:#5341E5}
+    .btn{width:100%;padding:11px;background:#5341E5;color:#fff;border:none;border-radius:8px;font-size:15px;font-weight:700;cursor:pointer;margin-top:4px}
+    .btn:hover{background:#4534c7}
+    .hint{text-align:center;font-size:11px;color:#bbb;margin-top:12px}
+    .alert-err{background:#FCEBEB;color:#A32D2D;padding:10px 14px;border-radius:8px;margin-bottom:14px;font-size:13px}
+  </style>
+</head>
+<body>
+<div class="login-box">
+  <h1>🎓 Student Predictor</h1>
+  <p>BCA Project — AI/ML Based System</p>
+  {% if error %}
+  <div class="alert-err">{{ error }}</div>
+  {% endif %}
+  <form method="POST">
+    <div class="form-group">
+      <label>Username</label>
+      <input type="text" name="username" placeholder="admin" required/>
+    </div>
+    <div class="form-group">
+      <label>Password</label>
+      <input type="password" name="password" placeholder="admin123" required/>
+    </div>
+    <button class="btn" type="submit">Login</button>
+  </form>
+  <div class="hint">Default Login: admin / admin123</div>
+</div>
+</body>
+</html>

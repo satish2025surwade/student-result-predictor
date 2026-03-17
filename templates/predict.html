@@ -1,0 +1,58 @@
+{% extends "base.html" %}
+{% block content %}
+
+<div class="card">
+  <h2>🔮 Quick Predict (Without Save )</h2>
+  <p style="font-size:13px;color:#888;margin-bottom:16px">Fill the details of student and get instant result!</p>
+  <form method="POST">
+    <div class="form-row">
+      <div class="form-group">
+        <label>Attendance (%) — 0 to 100</label>
+        <input type="number" name="attendance" placeholder="e.g. 75" min="0" max="100" required/>
+      </div>
+      <div class="form-group">
+        <label>Internal Marks — 0 to 50</label>
+        <input type="number" name="marks" placeholder="e.g. 35" min="0" max="50" required/>
+      </div>
+    </div>
+    <div class="form-row">
+      <div class="form-group">
+        <label>Assignment Score — 0 to 20</label>
+        <input type="number" name="assignment" placeholder="e.g. 12" min="0" max="20" required/>
+      </div>
+      <div class="form-group">
+        <label>Last Result</label>
+        <select name="prev_result">
+          <option value="Pass">Pass</option>
+          <option value="Fail">Fail</option>
+        </select>
+      </div>
+    </div>
+    <button class="btn btn-primary" type="submit">🚀 Predict !</button>
+  </form>
+</div>
+
+{% if result %}
+<div class="result-box result-{{ result.result | lower }}">
+  <div class="big">{% if result.result == 'Pass' %}✅ PASS{% else %}❌ FAIL{% endif %}</div>
+  <div style="font-size:14px;margin-bottom:8px">Confidence: <strong>{{ result.conf }}%</strong> &nbsp;|&nbsp; Total Score: <strong>{{ result.score }}/100</strong></div>
+  <div class="progress">
+    <div class="progress-bar" style="width:{{ result.conf }}%;background:{% if result.result == 'Pass' %}#639922{% else %}#E24B4A{% endif %}"></div>
+  </div>
+</div>
+{% endif %}
+
+<div class="card" style="margin-top:0">
+  <h2>📖 How This ML Model work ?</h2>
+  <div style="font-size:13px;color:#555;line-height:1.9">
+    We impliment  <strong>Weighted Scoring System</strong> inside the model (like Random Forest algorithm):<br><br>
+    <div class="bar-row"><div class="bar-lbl" style="width:160px;text-align:left">Attendance (40%)</div><div class="bar-bg"><div class="bar-fill" style="width:40%;background:#5341E5"></div></div></div>
+    <div class="bar-row"><div class="bar-lbl" style="width:160px;text-align:left">Internal Marks (35%)</div><div class="bar-bg"><div class="bar-fill" style="width:35%;background:#185FA5"></div></div></div>
+    <div class="bar-row"><div class="bar-lbl" style="width:160px;text-align:left">Assignment (15%)</div><div class="bar-bg"><div class="bar-fill" style="width:15%;background:#BA7517"></div></div></div>
+    <div class="bar-row"><div class="bar-lbl" style="width:160px;text-align:left">Prev Result (10%)</div><div class="bar-bg"><div class="bar-fill" style="width:10%;background:#639922"></div></div></div>
+    <br>
+    <strong>Score &gt;= 60</strong> → ✅ PASS &nbsp;&nbsp; | &nbsp;&nbsp; <strong>Score &lt; 60</strong> → ❌ FAIL
+  </div>
+</div>
+
+{% endblock %}

@@ -1,0 +1,52 @@
+{% extends "base.html" %}
+{% block content %}
+
+<div class="card" style="padding:0;overflow:hidden">
+  <div style="padding:16px 24px;border-bottom:2px solid #f0f0f0;display:flex;justify-content:space-between;align-items:center">
+    <h2 style="margin:0">📋 All Students</h2>
+    <a href="/add"><button class="btn btn-primary">+ Add Student</button></a>
+  </div>
+
+  {% if students %}
+  <table>
+    <thead>
+      <tr>
+        <th>#</th>
+        <th>Name</th>
+        <th>Roll No</th>
+        <th>Attendance</th>
+        <th>Marks</th>
+        <th>Assignment</th>
+        <th>Last</th>
+        <th>Result</th>
+        <th>Confidence</th>
+        <th>Delete</th>
+      </tr>
+    </thead>
+    <tbody>
+      {% for s in students %}
+      <tr>
+        <td style="color:#aaa">{{ loop.index }}</td>
+        <td style="font-weight:600">{{ s.name }}</td>
+        <td style="color:#888">{{ s.roll }}</td>
+        <td>{{ s.attendance }}%</td>
+        <td>{{ s.marks }}/50</td>
+        <td>{{ s.assignment }}/20</td>
+        <td>{{ s.prev_result }}</td>
+        <td><span class="badge badge-{{ s.result | lower }}">{{ s.result }}</span></td>
+        <td style="color:#888">{{ s.confidence }}%</td>
+        <td>
+          <a href="/delete/{{ s.id }}" onclick="return confirm('Are you sure to want delete?')">
+            <button class="btn btn-danger">🗑 Delete</button>
+          </a>
+        </td>
+      </tr>
+      {% endfor %}
+    </tbody>
+  </table>
+  {% else %}
+  <div class="empty"> There is not student. <a href="/add">Add first students here!</a></div>
+  {% endif %}
+</div>
+
+{% endblock %}

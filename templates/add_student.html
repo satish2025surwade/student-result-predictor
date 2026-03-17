@@ -1,0 +1,64 @@
+{% extends "base.html" %}
+{% block content %}
+
+<div class="card">
+  <h2>➕ New Student </h2>
+  {% if error %}
+  <div class="alert-err">{{ error }}</div>
+  {% endif %}
+  <form method="POST">
+    <div class="form-row">
+      <div class="form-group">
+        <label>Student's Name</label>
+        <input type="text" name="name" placeholder="e.g. Satish Surwade" required/>
+      </div>
+      <div class="form-group">
+        <label>Roll Number</label>
+        <input type="text" name="roll" placeholder="e.g. BCA2024001" required/>
+      </div>
+    </div>
+    <div class="form-row">
+      <div class="form-group">
+        <label>Attendance (%) — 0 to 100</label>
+        <input type="number" name="attendance" placeholder="e.g. 85" min="0" max="100" required/>
+      </div>
+      <div class="form-group">
+        <label>Internal Marks — 0 to 50</label>
+        <input type="number" name="marks" placeholder="e.g. 38" min="0" max="50" required/>
+      </div>
+    </div>
+    <div class="form-row">
+      <div class="form-group">
+        <label>Assignment Score — 0 to 20</label>
+        <input type="number" name="assignment" placeholder="e.g. 15" min="0" max="20" required/>
+      </div>
+      <div class="form-group">
+        <label>Pichla Result</label>
+        <select name="prev_result">
+          <option value="Pass">Pass</option>
+          <option value="Fail">Fail</option>
+        </select>
+      </div>
+    </div>
+    <div style="display:flex;gap:10px">
+      <button class="btn btn-primary" type="submit">💾 Save & Predict</button>
+      <a href="/dashboard"><button class="btn btn-secondary" type="button">Cancel</button></a>
+    </div>
+  </form>
+</div>
+
+{% if result %}
+<div class="result-box result-{{ result.result | lower }}">
+  <div class="big">{% if result.result == 'Pass' %}✅ PASS{% else %}❌ FAIL{% endif %}</div>
+  <div style="font-size:16px;font-weight:600;margin-bottom:4px">{{ result.name }}</div>
+  <div style="font-size:13px;margin-bottom:8px">Confidence: <strong>{{ result.conf }}%</strong> &nbsp;|&nbsp; Score: <strong>{{ result.score }}/100</strong></div>
+  <div class="progress">
+    <div class="progress-bar" style="width:{{ result.conf }}%;background:{% if result.result == 'Pass' %}#639922{% else %}#E24B4A{% endif %}"></div>
+  </div>
+  <div style="margin-top:14px">
+    <a href="/students"><button class="btn btn-secondary">📋 Saare Students Dekho</button></a>
+  </div>
+</div>
+{% endif %}
+
+{% endblock %}

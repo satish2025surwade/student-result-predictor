@@ -1,0 +1,66 @@
+{% extends "base.html" %}
+{% block content %}
+
+<div class="metric-grid">
+  <div class="metric">
+    <div class="val" style="color:#5341E5">{{ total }}</div>
+    <div class="lbl">Total Students</div>
+  </div>
+  <div class="metric">
+    <div class="val" style="color:#3B6D11">{{ passed }}</div>
+    <div class="lbl">Predicted Pass</div>
+  </div>
+  <div class="metric">
+    <div class="val" style="color:#E24B4A">{{ failed }}</div>
+    <div class="lbl">Predicted Fail</div>
+  </div>
+</div>
+
+<div class="card">
+  <h2>📊 Pass Rate Overview</h2>
+  {% if total > 0 %}
+  {% set pass_pct = ((passed / total) * 100) | round | int %}
+  {% set avg_att = (students | map(attribute='attendance') | map('float') | sum / total) | round | int %}
+  {% set avg_mrk = (students | map(attribute='marks') | map('float') | sum / total / 50 * 100) | round | int %}
+
+  <div class="bar-row">
+    <div class="bar-lbl">Pass Rate</div>
+    <div class="bar-bg"><div class="bar-fill" style="width:{{ pass_pct }}%;background:#639922"></div></div>
+    <div class="bar-val">{{ pass_pct }}%</div>
+  </div>
+  <div class="bar-row">
+    <div class="bar-lbl">Avg Attendance</div>
+    <div class="bar-bg"><div class="bar-fill" style="width:{{ avg_att }}%;background:#5341E5"></div></div>
+    <div class="bar-val">{{ avg_att }}%</div>
+  </div>
+  <div class="bar-row">
+    <div class="bar-lbl">Avg Marks</div>
+    <div class="bar-bg"><div class="bar-fill" style="width:{{ avg_mrk }}%;background:#185FA5"></div></div>
+    <div class="bar-val">{{ avg_mrk }}%</div>
+  </div>
+  {% else %}
+  <div class="empty">there is not any student. Add first !</div>
+  {% endif %}
+</div>
+
+<div class="card">
+  <h2>🕐 Recent Students</h2>
+  {% if recent %}
+  {% for s in recent %}
+  <div style="display:flex;justify-content:space-between;align-items:center;padding:10px 0;border-bottom:1px solid #f0f0f0">
+    <div>
+      <div style="font-weight:600;font-size:14px">{{ s.name }}</div>
+      <div style="font-size:12px;color:#888">{{ s.roll }} | Attendance: {{ s.attendance }}%</div>
+    </div>
+    <span class="badge badge-{{ s.result | lower }}">{{ s.result }}</span>
+  </div>
+  {% endfor %}
+  {% else %}
+  <div class="empty">No found any student.</div>
+  {% endif %}
+  <div style="margin-top:14px">
+    <a href="/add" style="text-decoration:none"><button class="btn btn-primary">+ Add New Student</button></a>
+  </div>
+</div>
+
+{% endblock %}
