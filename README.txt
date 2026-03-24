@@ -1,12 +1,13 @@
 ============================================
    STUDENT RESULT PREDICTOR — BCA PROJECT
 ============================================
-Developed By : [Your Full Name]
-Roll Number  : [Your Roll Number]
-Project Guide: [Teacher's Name]
-College      : KBCNMU, Jalgaon
+Developed By : Surwade Satish Sanjay
+PRN Number   : 2022015400251545
+Project Guide: Tajhshree Patil 
+College      : PDUSPM's IMR Jamner, Jalgaon
 Subject      : BCA 605 — Project Work (Semester VI)
 Domain       : Artificial Intelligence / Machine Learning
+Year         : 2025 - 2026
 ============================================
 
 
@@ -49,7 +50,7 @@ Then open your browser and go to:
     http://127.0.0.1:5000
 
 Login Credentials:
-    Username : Satish
+    Username : admin
     Password : admin123
 
 
@@ -134,15 +135,15 @@ the model is about its prediction.
 
 To make this project accessible online for free:
 
-Option 1 — PythonAnywhere (Easiest):
-    Website  : www.pythonanywhere.com
+Option 1 — render.com (Easiest):
+    Website  : https://render.com/
     Plan     : Free Beginner Account
     Live URL : https://yourusername.pythonanywhere.com
 
 Option 2 — Render.com:
     Website  : www.render.com
     Plan     : Free (requires GitHub account)
-    Live URL : https://your-app-name.onrender.com
+    Live URL : https://student-result-predictor-1.onrender.com/
 
 
 ============================================
@@ -153,7 +154,7 @@ Language   : Python 3.x
 Framework  : Flask 3.0.0
 Database   : CSV File (students.csv)
 Frontend   : HTML5, CSS3 (Jinja2 Templates)
-Hosting    : PythonAnywhere / Render.com (Free)
+Hosting    : Render.com (Free)
 
 
 ============================================
@@ -180,6 +181,5 @@ University : Kavayitri Bahinabai Chaudhari
 Course     : Bachelor of Computer Applications (BCA)
 Subject    : BCA 605 — Project Work
 Semester   : VI (Sixth Semester)
-Year       : 2025 - 2026
-
+MY Insta   : https://www.instagram.com/its_coding_time_tech/
 ============================================
