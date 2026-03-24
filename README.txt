@@ -135,12 +135,8 @@ the model is about its prediction.
 
 To make this project accessible online for free:
 
-Option 1 — render.com (Easiest):
-    Website  : https://render.com/
-    Plan     : Free Beginner Account
-    Live URL : https://yourusername.pythonanywhere.com
+          Render.com
 
-Option 2 — Render.com:
     Website  : www.render.com
     Plan     : Free (requires GitHub account)
     Live URL : https://student-result-predictor-1.onrender.com/
